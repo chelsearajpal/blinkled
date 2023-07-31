@@ -1,0 +1,23 @@
+// Define a module named "blink"
+module blink (
+    input wire clk, // 50MHz input clock
+    output wire LED // LED output
+);
+
+// Create a 32-bit binary counter
+reg [31:0] cnt;
+
+// Initialize the counter to start at zero
+initial begin
+    cnt <= 32'h00000000;
+end
+
+// Increment the counter on the positive edge of the clock
+always @(posedge clk) begin
+    cnt <= cnt + 1;
+end
+
+// Assign the LED to the 25th bit of the counter to make it blink at a few Hz
+assign LED = cnt[24];
+
+endmodule.
